@@ -17,7 +17,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .oauth2Login(o -> o
-                .userInfoEndpoint(u -> u.oidcUserService(authService))
+                .userInfoEndpoint(u -> u.userService(authService))
                 .defaultSuccessUrl("/", true))
             .logout(logout -> logout
                 .logoutSuccessUrl("/")
