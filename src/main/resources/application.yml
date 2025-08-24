@@ -4,6 +4,8 @@ server:
 spring:
   thymeleaf:
     cache: false
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
   security:
     oauth2:
       client:
