@@ -1,5 +1,8 @@
 package com.nayax.erp.user;
 
+import com.example.demo.entities.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.AuthService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

@@ -1,7 +1,9 @@
-package com.nayax.erp.user;
+package com.example.demo.service;
 
 import java.util.UUID;
 
+import com.example.demo.entities.User;
+import com.example.demo.repository.UserRepository;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;

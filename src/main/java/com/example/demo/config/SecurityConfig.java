@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.nayax.erp.user.AuthService;
+import com.example.demo.service.AuthService;
 
 @Configuration
 public class SecurityConfig {

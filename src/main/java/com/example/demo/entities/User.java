@@ -1,4 +1,4 @@
-package com.nayax.erp.user;
+package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
