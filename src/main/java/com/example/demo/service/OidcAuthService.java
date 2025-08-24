@@ -3,11 +3,10 @@ package com.example.demo.service;
 import com.example.demo.entities.User;
 import com.example.demo.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 // Сервис именно для OIDC (Google)
 @Service
@@ -34,6 +33,8 @@ public class OidcAuthService extends org.springframework.security.oauth2.client.
                         .authProvider(userRequest.getClientRegistration().getRegistrationId()) // "google"
                         .firstName((String) oidcUser.getClaims().get("given_name"))
                         .lastName((String) oidcUser.getClaims().get("family_name"))
+                        .createdAt(OffsetDateTime.now())
+                        .updatedAt(OffsetDateTime.now())
                         .build();
                 userRepository.save(user);
             }

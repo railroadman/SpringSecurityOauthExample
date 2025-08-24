@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
@@ -27,5 +28,22 @@ public class User {
     private String firstName;
 
     private String lastName;
+    @Column(name = "created_at", columnDefinition = "datetimeoffset", nullable = false)
+    private OffsetDateTime createdAt;
+
+    @Column(name = "updated_at", columnDefinition = "datetimeoffset", nullable = false)
+    private OffsetDateTime updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        OffsetDateTime now = OffsetDateTime.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = OffsetDateTime.now();
+    }
 }
 
