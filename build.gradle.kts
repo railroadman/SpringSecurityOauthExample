@@ -25,7 +25,20 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.xerial:sqlite-jdbc:3.42.0.0")
     implementation("org.hibernate.orm:hibernate-community-dialects")
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+    testCompileOnly("org.projectlombok:lombok:1.18.32")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.32")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+configurations {
+    compileOnly {
+        extendsFrom(annotationProcessor.get())
+    }
+    testCompileOnly {
+        extendsFrom(testAnnotationProcessor.get())
+    }
 }
 
 tasks.test {
