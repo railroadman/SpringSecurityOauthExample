@@ -21,7 +21,13 @@ public class AuthService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        OAuth2User oauth2User = super.loadUser(userRequest);
+        OAuth2User oauth2User = null;
+        try {
+            oauth2User = super.loadUser(userRequest);
+        } catch (OAuth2AuthenticationException e) {
+
+            throw new RuntimeException(e);
+        }
 
         String email = oauth2User.getAttribute("email");
         if (email != null && userRepository.findByEmail(email).isEmpty()) {
