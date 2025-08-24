@@ -7,7 +7,7 @@ spring:
     driver-class-name: org.sqlite.JDBC
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     database-platform: org.hibernate.community.dialect.SQLiteDialect
   thymeleaf:
     cache: false
@@ -17,7 +17,7 @@ spring:
         registration:
           google:
             client-id: ${GOOGLE_SEC_AUTH_CLIENT_ID}
-            client-secret: ${GOOGLE_SEC_AUTH_CLIENT_SECRET  }
+            client-secret: ${GOOGLE_SEC_AUTH_CLIENT_SECRET}
             scope: openid, profile, email
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
         provider:
@@ -27,4 +27,5 @@ spring:
 logging:
   level:
     org.springframework.security: DEBUG
-    org.springframework.security.oauth2: DEBUG
+    org.springframework.security.oauth2: TRACE
+    org.springframework.web.client.RestTemplate: DEBUG
