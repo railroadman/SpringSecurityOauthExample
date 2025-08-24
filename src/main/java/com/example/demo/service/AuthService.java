@@ -9,11 +9,14 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class AuthService extends DefaultOAuth2UserService {
 
     private final UserRepository userRepository;
+    private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
     public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -25,8 +28,8 @@ public class AuthService extends DefaultOAuth2UserService {
         try {
             oauth2User = super.loadUser(userRequest);
         } catch (OAuth2AuthenticationException e) {
-
-            throw new RuntimeException(e);
+            log.error("Failed to load user from OAuth2 provider", e);
+            throw new OAuth2AuthenticationException(e.getError(), "Failed to load user from OAuth2 provider", e);
         }
 
         String email = oauth2User.getAttribute("email");
