@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +34,10 @@ public class User {
 
     @Column(name = "updated_at", columnDefinition = "datetimeoffset", nullable = false)
     private OffsetDateTime updatedAt;
+
+    @JsonIgnore
+    @Column(name = "password_hash", length = 100) // запас под {bcrypt} + хэш
+    private String passwordHash;
 
     @PrePersist
     public void prePersist() {
